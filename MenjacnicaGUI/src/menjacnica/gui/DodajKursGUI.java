@@ -217,7 +217,7 @@ public class DodajKursGUI extends JFrame {
 						if(unos){
 							Valuta v = new Valuta(sifra, naziv, prodajniKurs, kupovniKurs, srednjiKurs, skraceniNaziv);
 							GUIKontroler.dodajValutuUModel(v);
-							GUIKontroler.dodajValutuUStatus(sifra, naziv, prodajniKurs, kupovniKurs, srednjiKurs, skraceniNaziv);
+							GUIKontroler.dodajValutuUStatus(v);
 						}
 					} catch (NumberFormatException e1) {
 						JOptionPane.showMessageDialog(getContentPane(), "Kurs ne sme sadrzati znakovne vrednosti.", "Greska pri unosu."

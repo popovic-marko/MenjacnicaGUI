@@ -10,6 +10,7 @@ import java.awt.Toolkit;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 import java.awt.event.KeyEvent;
 import java.awt.event.InputEvent;
@@ -25,6 +26,7 @@ import java.awt.Rectangle;
 import javax.swing.table.DefaultTableModel;
 
 import menjacnica.gui.models.MenjacnicaTableModel;
+import menjacnica.logika.Valuta;
 
 import javax.swing.JPopupMenu;
 import java.awt.Component;
@@ -197,6 +199,22 @@ public class MenjacnicaGUI extends JFrame {
 	private JButton getBtnIzbrisiKurs() {
 		if (btnIzbrisiKurs == null) {
 			btnIzbrisiKurs = new JButton("Izbrisi kurs");
+			btnIzbrisiKurs.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					int index = tabelaMenjacnica.getSelectedRow();
+					if(index == -1){
+						GUIKontroler.upozorenjeZaBrisanje();
+					}else{
+						int opcija = JOptionPane.showConfirmDialog(getContentPane(), "Da li ste sigurni da zelite da obrisete selektovani red?"
+								, "Upozorenje za brisanje", JOptionPane.YES_NO_CANCEL_OPTION);
+						if(opcija == JOptionPane.YES_OPTION){
+							MenjacnicaTableModel mtm = (MenjacnicaTableModel) tabelaMenjacnica.getModel();
+							Valuta v = mtm.vratiValutu(index);
+							GUIKontroler.izbrisiValutu(v);
+						}
+					}
+				}
+			});
 			btnIzbrisiKurs.setPreferredSize(new Dimension(120, 23));
 		}
 		return btnIzbrisiKurs;

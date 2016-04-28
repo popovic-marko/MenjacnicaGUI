@@ -72,10 +72,8 @@ public class GUIKontroler {
 		dodajKursProzor.dispose();
 	}
 
-	public static void dodajValutuUStatus(String sifra, String naziv, double prodajniKurs, double kupovniKurs,
-			double srednjiKurs, String skraceniNaziv) {
-		String s = "Uneta valuta:" + "\t" + "Sifra: " + sifra + "\t" + "Naziv:"+ naziv + "\t"+ "Prodajni kurs: " + prodajniKurs + "\t"
-				+ "Kupovni kurs: " + kupovniKurs + "\t" + "Srednji kurs:" + srednjiKurs + "\t" + "Skraceni naziv:" + skraceniNaziv + "\n";
+	public static void dodajValutuUStatus(Valuta v) {
+		String s = "Uneta valuta:" + "\t" + v.toString();
 		menjacnicaProzor.getTextAreaStatus().append(s);
 	}
 
@@ -92,6 +90,25 @@ public class GUIKontroler {
 
 	public static LinkedList<Valuta> vratiSveValute() {
 		return menjacnica.vratiSveValute();
+	}
+
+	public static void upozorenjeZaBrisanje() {
+		JOptionPane.showMessageDialog(menjacnicaProzor.getContentPane(), "Morate izabrati red koji sadrzi podatke kursa za brisanje!",
+				"Greska prilikom brisanja", JOptionPane.ERROR_MESSAGE);
+	}
+
+	public static void izbrisiValutu(Valuta v) {
+		try {
+			int index = menjacnica.vratiIndeks(v);
+			menjacnica.izbrisiValutu(v);
+			menjacnicaProzor.osveziTabelu();
+			menjacnicaProzor.getTextAreaStatus().append("Izbrisana je red sa indeksom: " + index + "." + "\n");
+			JOptionPane.showMessageDialog(menjacnicaProzor.getContentPane(), "Uspesno ste izbrisali valutu.",
+					"Uspesno brisanje", JOptionPane.INFORMATION_MESSAGE);
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(menjacnicaProzor.getContentPane(), "Doslo je do greske prilikom brisanja.",
+					"Greska prilikom brisanja", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 
 }

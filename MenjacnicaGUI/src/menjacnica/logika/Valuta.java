@@ -86,6 +86,12 @@ public class Valuta {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "Sifra: " + sifra + "\t" + "Naziv:"+ naziv + "\t"+ "Prodajni kurs: " + prodajniKurs + "\t"
+				+ "Kupovni kurs: " + kupovniKurs + "\t" + "Srednji kurs:" + srednjiKurs + "\t" + "Skraceni naziv:" + skraceniNaziv + "\n";
+	}
 	
 	
 }

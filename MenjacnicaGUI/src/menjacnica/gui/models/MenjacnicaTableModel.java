@@ -63,4 +63,8 @@ public class MenjacnicaTableModel extends AbstractTableModel{
 		fireTableDataChanged();
 	}
 
+	public Valuta vratiValutu(int index) {
+		return valute.get(index);
+	}
+
 }

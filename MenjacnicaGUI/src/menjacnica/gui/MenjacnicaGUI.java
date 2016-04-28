@@ -23,6 +23,9 @@ import javax.swing.border.TitledBorder;
 import javax.swing.JTextArea;
 import java.awt.Rectangle;
 import javax.swing.table.DefaultTableModel;
+
+import menjacnica.gui.models.MenjacnicaTableModel;
+
 import javax.swing.JPopupMenu;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
@@ -182,6 +185,11 @@ public class MenjacnicaGUI extends JFrame {
 	private JButton getBtnDodajKurs() {
 		if (btnDodajKurs == null) {
 			btnDodajKurs = new JButton("Dodaj kurs");
+			btnDodajKurs.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIKontroler.pokreniDodajKursProzor();
+				}
+			});
 			btnDodajKurs.setPreferredSize(new Dimension(120, 23));
 		}
 		return btnDodajKurs;
@@ -208,16 +216,10 @@ public class MenjacnicaGUI extends JFrame {
 		}
 		return scrollPane;
 	}
-	private JTable getTabelaMenjacnica() {
+	public JTable getTabelaMenjacnica() {
 		if (tabelaMenjacnica == null) {
 			tabelaMenjacnica = new JTable();
-			tabelaMenjacnica.setModel(new DefaultTableModel(
-				new Object[][] {
-				},
-				new String[] {
-					"Sifra", "Skraceni naziv", "Prodajni", "Srednji", "Kupovni", "Naziv"
-				}
-			));
+			tabelaMenjacnica.setModel(new MenjacnicaTableModel(GUIKontroler.vratiSveValute()));
 		}
 		return tabelaMenjacnica;
 	}
@@ -238,7 +240,7 @@ public class MenjacnicaGUI extends JFrame {
 		}
 		return scrollPane_1;
 	}
-	private JTextArea getTextAreaStatus() {
+	public JTextArea getTextAreaStatus() {
 		if (textAreaStatus == null) {
 			textAreaStatus = new JTextArea();
 		}
@@ -273,6 +275,11 @@ public class MenjacnicaGUI extends JFrame {
 	private JMenuItem getMnItmDodajKurs() {
 		if (mnItmDodajKurs == null) {
 			mnItmDodajKurs = new JMenuItem("Dodaj kurs");
+			mnItmDodajKurs.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIKontroler.pokreniDodajKursProzor();
+				}
+			});
 		}
 		return mnItmDodajKurs;
 	}
@@ -287,5 +294,10 @@ public class MenjacnicaGUI extends JFrame {
 			mnItmIzvrsiZamenu = new JMenuItem("Izvrsi zamenu");
 		}
 		return mnItmIzvrsiZamenu;
+	}
+
+	public void osveziTabelu() {
+		MenjacnicaTableModel mtm = (MenjacnicaTableModel) getTabelaMenjacnica().getModel();
+		mtm.staviSveKnjigeUModel(GUIKontroler.vratiSveValute());
 	}
 }

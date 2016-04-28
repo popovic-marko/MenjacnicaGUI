@@ -27,6 +27,10 @@ import javax.swing.JPopupMenu;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class MenjacnicaGUI extends JFrame {
 
@@ -46,7 +50,7 @@ public class MenjacnicaGUI extends JFrame {
 	private JTable tabelaMenjacnica;
 	private JPanel donjiPanel;
 	private JScrollPane scrollPane_1;
-	private JTextArea textArea;
+	private JTextArea textAreaStatus;
 	private JPopupMenu popupMenu;
 	private JMenuItem mnItmDodajKurs;
 	private JMenuItem mnItmObrisiKurs;
@@ -55,7 +59,7 @@ public class MenjacnicaGUI extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+/*	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -67,14 +71,20 @@ public class MenjacnicaGUI extends JFrame {
 			}
 		});
 	}
-
+*/
 	/**
 	 * Create the frame.
 	 */
 	public MenjacnicaGUI() {
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				GUIKontroler.zatvoriAplikaciju();
+			}
+		});
 		setIconImage(Toolkit.getDefaultToolkit().getImage(MenjacnicaGUI.class.getResource("/resources/euro-simbol.jpg")));
 		setTitle("Menjacnica");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 678, 388);
 		setJMenuBar(getMenuBar_1());
 		contentPane = new JPanel();
@@ -113,6 +123,11 @@ public class MenjacnicaGUI extends JFrame {
 	private JMenuItem getMnItmOpen() {
 		if (mnItmOpen == null) {
 			mnItmOpen = new JMenuItem("Open");
+			mnItmOpen.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					textAreaStatus.append(GUIKontroler.ucitajFajl());
+				}
+			});
 			mnItmOpen.setIcon(new ImageIcon(MenjacnicaGUI.class.getResource("/com/sun/java/swing/plaf/windows/icons/TreeOpen.gif")));
 			mnItmOpen.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, InputEvent.CTRL_MASK));
 		}
@@ -121,6 +136,11 @@ public class MenjacnicaGUI extends JFrame {
 	private JMenuItem getMnItmSave() {
 		if (mnItmSave == null) {
 			mnItmSave = new JMenuItem("Save");
+			mnItmSave.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					textAreaStatus.append(GUIKontroler.sacuvajFajl());
+				}
+			});
 			mnItmSave.setIcon(new ImageIcon(MenjacnicaGUI.class.getResource("/javax/swing/plaf/metal/icons/ocean/floppy.gif")));
 			mnItmSave.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_MASK));
 		}
@@ -129,6 +149,11 @@ public class MenjacnicaGUI extends JFrame {
 	private JMenuItem getMnItmExit() {
 		if (mnItmExit == null) {
 			mnItmExit = new JMenuItem("Exit");
+			mnItmExit.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIKontroler.zatvoriAplikaciju();
+				}
+			});
 			mnItmExit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, InputEvent.ALT_MASK));
 		}
 		return mnItmExit;
@@ -136,6 +161,11 @@ public class MenjacnicaGUI extends JFrame {
 	private JMenuItem getMnItmAbout() {
 		if (mnItmAbout == null) {
 			mnItmAbout = new JMenuItem("About");
+			mnItmAbout.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIKontroler.aboutDijalog();
+				}
+			});
 		}
 		return mnItmAbout;
 	}
@@ -204,15 +234,15 @@ public class MenjacnicaGUI extends JFrame {
 	private JScrollPane getScrollPane_1() {
 		if (scrollPane_1 == null) {
 			scrollPane_1 = new JScrollPane();
-			scrollPane_1.setViewportView(getTextArea());
+			scrollPane_1.setViewportView(getTextAreaStatus());
 		}
 		return scrollPane_1;
 	}
-	private JTextArea getTextArea() {
-		if (textArea == null) {
-			textArea = new JTextArea();
+	private JTextArea getTextAreaStatus() {
+		if (textAreaStatus == null) {
+			textAreaStatus = new JTextArea();
 		}
-		return textArea;
+		return textAreaStatus;
 	}
 	private JPopupMenu getPopupMenu() {
 		if (popupMenu == null) {

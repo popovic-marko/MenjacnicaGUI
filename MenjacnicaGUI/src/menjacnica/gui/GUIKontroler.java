@@ -8,6 +8,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 import menjacnica.gui.models.MenjacnicaTableModel;
+import menjacnica.interfejs.MenjacnicaInterfejs;
 import menjacnica.logika.Menjacnica;
 import menjacnica.logika.Valuta;
 
@@ -15,7 +16,7 @@ public class GUIKontroler {
 
 	private static MenjacnicaGUI menjacnicaProzor;
 	private static DodajKursGUI dodajKursProzor;
-	private static Menjacnica menjacnica;
+	private static MenjacnicaInterfejs menjacnica;
 	private static IzvrsiZamenuGUI izvrsiZamenuProzor;
 
 	public static void main(String[] args) {
@@ -103,7 +104,7 @@ public class GUIKontroler {
 			int index = menjacnica.vratiIndeks(v);
 			menjacnica.izbrisiValutu(v);
 			menjacnicaProzor.osveziTabelu();
-			menjacnicaProzor.getTextAreaStatus().append("Izbrisana je red sa indeksom: " + index + "." + "\n");
+			menjacnicaProzor.getTextAreaStatus().append("Izbrisana je red sa indeksom: " + index + "!" + "\n");
 			JOptionPane.showMessageDialog(menjacnicaProzor.getContentPane(), "Uspesno ste izbrisali valutu.",
 					"Uspesno brisanje", JOptionPane.INFORMATION_MESSAGE);
 		} catch (Exception e) {
@@ -111,7 +112,7 @@ public class GUIKontroler {
 					"Greska prilikom brisanja", JOptionPane.ERROR_MESSAGE);
 		}
 	}
-	
+
 	public static void zatvoriProzorIzvrsiZamenu(){
 		izvrsiZamenuProzor.dispose();
 	}

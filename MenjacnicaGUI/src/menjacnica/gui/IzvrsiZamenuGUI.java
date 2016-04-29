@@ -44,7 +44,7 @@ public class IzvrsiZamenuGUI extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-/*	public static void main(String[] args) {
+	/*	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -56,7 +56,7 @@ public class IzvrsiZamenuGUI extends JFrame {
 			}
 		});
 	}
-*/
+	 */
 	/**
 	 * Create the frame.
 	 */
@@ -188,7 +188,7 @@ public class IzvrsiZamenuGUI extends JFrame {
 			slider.setMinorTickSpacing(5);
 			slider.setPaintTicks(true);
 			slider.setPaintLabels(true);
-			
+
 		}
 		return slider;
 	}
@@ -205,13 +205,13 @@ public class IzvrsiZamenuGUI extends JFrame {
 							transakcija = "kupovina";
 						else
 							transakcija = "prodaja";
-						
+
 						GUIKontroler.dodajZamenuUStatus(valuta, iznos, transakcija);
 					} catch (NumberFormatException e1) {
 						JOptionPane.showMessageDialog(getContentPane(), "Iznos ne sme sadrzati znakovne vrednosti i mora biti popunjen.", "Greska pri unosu."
 								,JOptionPane.WARNING_MESSAGE);
 					}
-					
+
 				}
 			});
 			btnIzvrsiZamenu.setFont(new Font("Tahoma", Font.PLAIN, 12));

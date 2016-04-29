@@ -64,7 +64,7 @@ public class MenjacnicaGUI extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-/*	public static void main(String[] args) {
+	/*	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -76,7 +76,7 @@ public class MenjacnicaGUI extends JFrame {
 			}
 		});
 	}
-*/
+	 */
 	/**
 	 * Create the frame.
 	 */
@@ -322,7 +322,7 @@ public class MenjacnicaGUI extends JFrame {
 		MenjacnicaTableModel mtm = (MenjacnicaTableModel) getTabelaMenjacnica().getModel();
 		mtm.staviSveKnjigeUModel(GUIKontroler.vratiSveValute());
 	}
-	
+
 	private void izbrisiKursPomocna(){
 		int index = tabelaMenjacnica.getSelectedRow();
 		if(index == -1){

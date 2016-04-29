@@ -42,7 +42,7 @@ public class DodajKursGUI extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-/*	public static void main(String[] args) {
+	/*	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -54,7 +54,7 @@ public class DodajKursGUI extends JFrame {
 			}
 		});
 	}
-*/
+	 */
 	/**
 	 * Create the frame.
 	 */
@@ -221,11 +221,11 @@ public class DodajKursGUI extends JFrame {
 						}
 					} catch (NumberFormatException e1) {
 						JOptionPane.showMessageDialog(getContentPane(), "Kurs ne sme sadrzati znakovne vrednosti.", "Greska pri unosu."
-													,JOptionPane.WARNING_MESSAGE);
+								,JOptionPane.WARNING_MESSAGE);
 					}catch (Exception e2) {
 						JOptionPane.showMessageDialog(getContentPane(), "Valuta sa unetom sifrom vec postoji.", "Greska pri unosu", JOptionPane.WARNING_MESSAGE);
 					}
-					
+
 				}
 
 			});

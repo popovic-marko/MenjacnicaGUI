@@ -309,6 +309,11 @@ public class MenjacnicaGUI extends JFrame {
 	private JMenuItem getMnItmIzvrsiZamenu() {
 		if (mnItmIzvrsiZamenu == null) {
 			mnItmIzvrsiZamenu = new JMenuItem("Izvrsi zamenu");
+			mnItmIzvrsiZamenu.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIKontroler.pokreniIzvrsiZamenu();
+				}
+			});
 		}
 		return mnItmIzvrsiZamenu;
 	}

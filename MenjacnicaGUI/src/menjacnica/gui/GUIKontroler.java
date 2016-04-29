@@ -16,6 +16,7 @@ public class GUIKontroler {
 	private static MenjacnicaGUI menjacnicaProzor;
 	private static DodajKursGUI dodajKursProzor;
 	private static Menjacnica menjacnica;
+	private static IzvrsiZamenuGUI izvrsiZamenuProzor;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -109,6 +110,21 @@ public class GUIKontroler {
 			JOptionPane.showMessageDialog(menjacnicaProzor.getContentPane(), "Doslo je do greske prilikom brisanja.",
 					"Greska prilikom brisanja", JOptionPane.ERROR_MESSAGE);
 		}
+	}
+	
+	public static void zatvoriProzorIzvrsiZamenu(){
+		izvrsiZamenuProzor.dispose();
+	}
+
+	public static void pokreniIzvrsiZamenu() {
+		izvrsiZamenuProzor = new IzvrsiZamenuGUI();
+		izvrsiZamenuProzor.setLocationRelativeTo(null);
+		izvrsiZamenuProzor.setVisible(true);
+	}
+
+	public static void dodajZamenuUStatus(String valuta, int iznos, String transakcija) {
+		String s = "Izvrsena zamena:" + "\t" + "Naziv: " + valuta + "\t" + "Iznos: "+ iznos + "\t" + "Vrsta transakcije: " + transakcija + "\n";
+		menjacnicaProzor.getTextAreaStatus().append(s);
 	}
 
 }

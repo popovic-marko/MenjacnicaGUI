@@ -201,18 +201,7 @@ public class MenjacnicaGUI extends JFrame {
 			btnIzbrisiKurs = new JButton("Izbrisi kurs");
 			btnIzbrisiKurs.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					int index = tabelaMenjacnica.getSelectedRow();
-					if(index == -1){
-						GUIKontroler.upozorenjeZaBrisanje();
-					}else{
-						int opcija = JOptionPane.showConfirmDialog(getContentPane(), "Da li ste sigurni da zelite da obrisete selektovani red?"
-								, "Upozorenje za brisanje", JOptionPane.YES_NO_CANCEL_OPTION);
-						if(opcija == JOptionPane.YES_OPTION){
-							MenjacnicaTableModel mtm = (MenjacnicaTableModel) tabelaMenjacnica.getModel();
-							Valuta v = mtm.vratiValutu(index);
-							GUIKontroler.izbrisiValutu(v);
-						}
-					}
+					izbrisiKursPomocna();
 				}
 			});
 			btnIzbrisiKurs.setPreferredSize(new Dimension(120, 23));
@@ -222,6 +211,11 @@ public class MenjacnicaGUI extends JFrame {
 	private JButton getBtnIzvrsiZamenu() {
 		if (btnIzvrsiZamenu == null) {
 			btnIzvrsiZamenu = new JButton("Izvrsi zamenu");
+			btnIzvrsiZamenu.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIKontroler.pokreniIzvrsiZamenu();
+				}
+			});
 			btnIzvrsiZamenu.setPreferredSize(new Dimension(120, 23));
 		}
 		return btnIzvrsiZamenu;
@@ -304,6 +298,11 @@ public class MenjacnicaGUI extends JFrame {
 	private JMenuItem getMnItmObrisiKurs() {
 		if (mnItmObrisiKurs == null) {
 			mnItmObrisiKurs = new JMenuItem("Obrisi kurs");
+			mnItmObrisiKurs.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					izbrisiKursPomocna();
+				}
+			});
 		}
 		return mnItmObrisiKurs;
 	}
@@ -317,5 +316,20 @@ public class MenjacnicaGUI extends JFrame {
 	public void osveziTabelu() {
 		MenjacnicaTableModel mtm = (MenjacnicaTableModel) getTabelaMenjacnica().getModel();
 		mtm.staviSveKnjigeUModel(GUIKontroler.vratiSveValute());
+	}
+	
+	private void izbrisiKursPomocna(){
+		int index = tabelaMenjacnica.getSelectedRow();
+		if(index == -1){
+			GUIKontroler.upozorenjeZaBrisanje();
+		}else{
+			int opcija = JOptionPane.showConfirmDialog(getContentPane(), "Da li ste sigurni da zelite da obrisete selektovani red?"
+					, "Upozorenje za brisanje", JOptionPane.YES_NO_CANCEL_OPTION);
+			if(opcija == JOptionPane.YES_OPTION){
+				MenjacnicaTableModel mtm = (MenjacnicaTableModel) tabelaMenjacnica.getModel();
+				Valuta v = mtm.vratiValutu(index);
+				GUIKontroler.izbrisiValutu(v);
+			}
+		}
 	}
 }

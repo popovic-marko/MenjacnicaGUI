@@ -53,6 +53,11 @@ public class MenjacnicaTableModel extends AbstractTableModel{
 		return kolone[column];
 	}
 	
+	@Override
+	public boolean isCellEditable(int rowIndex, int columnIndex) {
+		return false;
+	}
+	
 /*	public void dodajValutuUModel(Valuta v){
 		this.valute.add(v);
 		fireTableDataChanged();
